@@ -8,28 +8,6 @@ export const set = (bitset, i) => {
   bitset[elementIndex] = bitset[elementIndex] | (1 << bitIndex)
 }
 
-export const replaceBits = (bitset, startIndex, value, length) => {
-  for (let i = 0; i < length; i++) {
-    if ((value >> i) & 1) {
-      set(bitset, startIndex + i)
-    } else {
-      clear(bitset, startIndex + i)
-    }
-  }
-}
-
-export const getBits = (bitset, startIndex, length) => {
-  let result = 0
-
-  for (let i = 0; i < length; i++) {
-    if (get(bitset, startIndex + i)) {
-      result |= 1 << i
-    }
-  }
-
-  return result
-}
-
 export const clear = (bitset, i) => {
   const elementIndex = Math.floor(i / 32)
   const bitIndex = i % 32
