@@ -16,8 +16,6 @@ export const replaceBits = (bitset, startIndex, value, length) => {
       clear(bitset, startIndex + i)
     }
   }
-
-  return bitset
 }
 
 export const clear = (bitset, i) => {
