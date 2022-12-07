@@ -18,6 +18,29 @@ export const replaceBits = (bitset, startIndex, value, length) => {
   }
 }
 
+export const duplicate = (bitset) => {
+  const duplicateBitset = create(bitset.length * 32).fill(0)
+
+  for (let i = 0; i < bitset.length; i++) {
+    duplicateBitset[i] |= bitset[i]
+  }
+
+  return duplicateBitset
+}
+
+export const iterateSet = (bitset, callback) => {
+  for (let i = 0; i < bitset.length; ++i) {
+    let bits = bitset[i]
+
+    while (bits != 0) {
+      const t = bits & -bits
+      const r = Math.clz32(bits)
+      callback(i * 32 + r)
+      bits ^= t
+    }
+  }
+}
+
 export const getBits = (bitset, startIndex, length) => {
   let result = 0
 
