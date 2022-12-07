@@ -18,6 +18,18 @@ export const replaceBits = (bitset, startIndex, value, length) => {
   }
 }
 
+export const getBits = (bitset, startIndex, length) => {
+  let result = 0
+
+  for (let i = 0; i < length; i++) {
+    if (get(bitset, startIndex + i)) {
+      result |= 1 << i
+    }
+  }
+
+  return result
+}
+
 export const clear = (bitset, i) => {
   const elementIndex = Math.floor(i / 32)
   const bitIndex = i % 32
